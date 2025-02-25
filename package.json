@@ -1,5 +1,5 @@
 {
-  "name": "file-traverser",
+  "name": "@piemekanika/file-traverser",
   "version": "1.0.0",
   "description": "A utility to traverse directories and filter files",
   "main": "dist/index.js",
