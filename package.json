@@ -1,0 +1,30 @@
+{
+  "name": "file-traverser",
+  "version": "1.0.0",
+  "description": "A utility to traverse directories and filter files",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "type": "module",
+  "keywords": [
+    "file",
+    "traverse",
+    "directory",
+    "typescript"
+  ],
+  "author": "piemekanika",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "@types/node": "^20.11.19"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
