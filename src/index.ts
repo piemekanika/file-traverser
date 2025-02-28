@@ -5,8 +5,8 @@ import { join } from 'node:path';
  * Options for file traversal
  */
 export interface TraverseOptions {
-  directory: string;
-  filter: (filePath: string) => boolean;
+    directory: string;
+    filter: (filePath: string) => boolean;
 }
 
 /**
@@ -15,27 +15,27 @@ export interface TraverseOptions {
  * @returns Promise<string[]> Array of matching file paths
  */
 export async function traverseFiles({ directory, filter }: TraverseOptions): Promise<string[]> {
-  const results: string[] = [];
+    const results: string[] = [];
 
-  try {
-    const entries = await readdir(directory, { withFileTypes: true });
+    try {
+        const entries = await readdir(directory, { withFileTypes: true });
 
-    for (const entry of entries) {
-      const fullPath = join(directory, entry.name);
+        for (const entry of entries) {
+            const fullPath = join(directory, entry.name);
 
-      if (entry.isDirectory()) {
-        // Recursively traverse subdirectories
-        const subResults = await traverseFiles({ directory: fullPath, filter });
-        results.push(...subResults);
-      } else if (entry.isFile() && filter(fullPath)) {
-        // Add file if it matches the filter
-        results.push(fullPath);
-      }
+            if (entry.isDirectory()) {
+                // Recursively traverse subdirectories
+                const subResults = await traverseFiles({ directory: fullPath, filter });
+                results.push(...subResults);
+            } else if (entry.isFile() && filter(fullPath)) {
+                // Add file if it matches the filter
+                results.push(fullPath);
+            }
+        }
+    } catch (error) {
+        console.error(`Error traversing directory ${directory}:`, error);
     }
-  } catch (error) {
-    console.error(`Error traversing directory ${directory}:`, error);
-  }
 
-  return results;
+    return results;
 }
 
